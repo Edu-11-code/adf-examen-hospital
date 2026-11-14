@@ -1,5 +1,5 @@
 {
-	"name": "gold_paciente_sql",
+	"name": "gold_dim_paciente_sql",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",

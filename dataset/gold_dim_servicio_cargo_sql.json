@@ -1,5 +1,5 @@
 {
-	"name": "gold_servicio_cargo_sql",
+	"name": "gold_dim_servicio_cargo_sql",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
