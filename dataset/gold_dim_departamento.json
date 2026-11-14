@@ -1,5 +1,5 @@
 {
-	"name": "gold_dim_departamento_sql",
+	"name": "gold_dim_departamento",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",

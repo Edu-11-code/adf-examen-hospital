@@ -1,5 +1,5 @@
 {
-	"name": "gold_dim_fecha_sql",
+	"name": "gold_dim_fecha",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",

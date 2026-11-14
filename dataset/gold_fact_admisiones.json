@@ -1,5 +1,5 @@
 {
-	"name": "gold_fact_admisiones_sql",
+	"name": "gold_fact_admisiones",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",

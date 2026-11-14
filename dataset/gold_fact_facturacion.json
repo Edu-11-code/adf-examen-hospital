@@ -1,5 +1,5 @@
 {
-	"name": "gold_fact_facturacion_sql",
+	"name": "gold_fact_facturacion",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
