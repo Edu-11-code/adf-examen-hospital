@@ -54,6 +54,7 @@
 				"derivedColumn1 filter(!isNull(admission_id) &&",
 				"!isNull(patient_id) &&",
 				"!isNull(admission_date) &&",
+				"patient_id <= 1015 &&",
 				"!isNull(department) &&",
 				"trim(department) != '' &&",
 				"!isNull(attending_doctor_id) &&",
