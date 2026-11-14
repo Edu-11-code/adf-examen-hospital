@@ -461,6 +461,342 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/gold_dim_departamento_sql')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "gold"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "departamento_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "nombre_departamento",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "gold",
+					"table": "dim_departamento"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gold_dim_diagnostico_sql')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "gold"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "diagnostico_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "codigo_icd",
+						"type": "varchar"
+					},
+					{
+						"name": "descripcion_patologia",
+						"type": "nvarchar"
+					},
+					{
+						"name": "nivel_severidad",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "gold",
+					"table": "dim_diagnostico"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gold_dim_fecha_sql')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "gold"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "fecha_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fecha_completa",
+						"type": "date"
+					},
+					{
+						"name": "anio",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "trimestre",
+						"type": "tinyint",
+						"precision": 3
+					},
+					{
+						"name": "trimestre_nombre",
+						"type": "varchar"
+					},
+					{
+						"name": "mes",
+						"type": "tinyint",
+						"precision": 3
+					},
+					{
+						"name": "mes_nombre",
+						"type": "varchar"
+					},
+					{
+						"name": "mes_corto",
+						"type": "char"
+					},
+					{
+						"name": "semana_anio",
+						"type": "tinyint",
+						"precision": 3
+					},
+					{
+						"name": "dia_mes",
+						"type": "tinyint",
+						"precision": 3
+					},
+					{
+						"name": "dia_semana",
+						"type": "tinyint",
+						"precision": 3
+					},
+					{
+						"name": "dia_nombre",
+						"type": "varchar"
+					},
+					{
+						"name": "es_fin_de_semana",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "gold",
+					"table": "dim_fecha"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gold_paciente_sql')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "gold"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "paciente_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "patient_id_bk",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "nombre_completo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "genero",
+						"type": "varchar"
+					},
+					{
+						"name": "fecha_nacimiento",
+						"type": "date"
+					},
+					{
+						"name": "rango_etario",
+						"type": "varchar"
+					},
+					{
+						"name": "correo_electronico",
+						"type": "varchar"
+					},
+					{
+						"name": "direccion",
+						"type": "nvarchar"
+					},
+					{
+						"name": "proveedor_seguro",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "gold",
+					"table": "dim_paciente"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gold_servicio_cargo_sql')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "gold"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "servicio_cargo_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "tipo_cargo",
+						"type": "varchar"
+					},
+					{
+						"name": "estado_pago",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "gold",
+					"table": "dim_servicio_cargo"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gold_fact_admisiones_sql')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "gold"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "admision_key",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "admission_id_bk",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "paciente_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "departamento_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "diagnostico_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fecha_ingreso_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fecha_alta_key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "medico_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "dias_estancia",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "conteo_admisiones",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "gold",
+					"table": "fact_admisiones"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/df_admissions_silver')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -615,13 +951,27 @@
 						"          amount = toDecimal(     regexReplace(         trim(amount),         '[^0-9.-]',         ''     ),     12,     2 ),",
 						"          payment_status = iif(     isNull(payment_status) || trim(payment_status) == '',     'Unknown',     iif(         upper(trim(payment_status)) == 'PAID',         'Paid',         iif(             upper(trim(payment_status)) == 'UNPAID',             'Unpaid',             iif(                 upper(trim(payment_status)) == 'PENDING',                 'Pending',                 iif(                     upper(trim(payment_status)) == 'OVERDUE',                     'Overdue',                     'Unknown'                 )             )         )     ) ),",
 						"          payment_date = iif(     isNull(payment_date) || trim(payment_date) == '',     toDate(null()),     iif(         regexMatch(             trim(payment_date),             '^[0-9]{2}-[0-9]{2}-[0-9]{2}$'         ),         toDate(             concat(                 '20',                 right(trim(payment_date), 2),                 '-',                 left(trim(payment_date), 2),                 '-',                 substring(trim(payment_date), 4, 2)             ),             'yyyy-MM-dd'         ),         coalesce(             toDate(trim(payment_date), 'yyyy-MM-dd'),             toDate(trim(payment_date), 'MM/dd/yyyy'),             toDate(trim(payment_date), 'dd-MMM-yyyy', 'en-US'),             toDate(trim(payment_date), 'MMMM dd, yyyy', 'en-US'),             toDate(trim(payment_date), 'MM-dd-yyyy')         )     ) )) ~> derivedColumn1",
-						"derivedColumn1 filter(!isNull(billing_id) &&",
-						"!isNull(admission_id) &&",
-						"!isNull(charge_type) &&",
-						"trim(charge_type) != '' &&",
-						"!isNull(amount) &&",
-						"!isNull(payment_status) &&",
-						"trim(payment_status) != '') ~> filter1",
+						"derivedColumn1 filter(!isNull(admission_id) &&",
+						"!contains(",
+						"    [",
+						"        878, 1088, 1524, 1699, 1626,",
+						"        1767, 842, 1629, 529, 234,",
+						"        448, 183, 1110, 1146, 46,",
+						"        302, 1357, 1201, 887, 1666,",
+						"        1637, 433, 345, 1459, 304,",
+						"        78, 1002, 667, 1247, 1279,",
+						"        111, 730, 251, 894, 1329,",
+						"        751, 806, 1223, 603, 187,",
+						"        446, 807, 1148, 869, 659,",
+						"        734, 444, 451, 548, 173,",
+						"        462, 646, 1668, 1680, 1241,",
+						"        1759, 666, 109, 1578, 1418,",
+						"        1793, 713, 733, 1166, 1639,",
+						"        1113, 942, 421, 329, 1157,",
+						"        1665, 1398",
+						"    ],",
+						"    admission_id",
+						")) ~> filter1",
 						"filter1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
@@ -701,10 +1051,27 @@
 						"          icd_code = iif(     isNull(icd_code) || trim(icd_code) == '',     toString(null()),     replace(         replace(             replace(                 replace(                     replace(                         replace(                             upper(                                 regexReplace(                                     replace(trim(icd_code), '-', '.'),                                     '\\\\s*,\\\\s*',                                     ', '                                 )                             ),                             'M545', 'M54.5'                         ),                         'E119', 'E11.9'                     ),                     'F329', 'F32.9'                 ),                 'K219', 'K21.9'             ),             'C50911', 'C50.911'         ),         'N390', 'N39.0'     ) ),",
 						"          diagnosis_description = iif(     isNull(diagnosis_description) || trim(diagnosis_description) == '',     toString(null()),     trim(diagnosis_description) ),",
 						"          severity = iif(     isNull(severity) || trim(severity) == '',     toString(null()),     iif(         upper(trim(severity)) == 'MILD',         'Mild',         iif(             upper(trim(severity)) == 'MODERATE',             'Moderate',             iif(                 upper(trim(severity)) == 'SEVERE',                 'Severe',                 iif(                     upper(trim(severity)) == 'CRITICAL',                     'Critical',                     toString(null())                 )             )         )     ) )) ~> derivedColumn1",
-						"derivedColumn1 filter(!isNull(diagnosis_id) &&",
-						"!isNull(admission_id) &&",
-						"!isNull(icd_code) &&",
-						"trim(icd_code) != '') ~> filter1",
+						"derivedColumn1 filter(!isNull(admission_id) &&",
+						"!contains(",
+						"    [",
+						"        878, 1088, 1524, 1699, 1626,",
+						"        1767, 842, 1629, 529, 234,",
+						"        448, 183, 1110, 1146, 46,",
+						"        302, 1357, 1201, 887, 1666,",
+						"        1637, 433, 345, 1459, 304,",
+						"        78, 1002, 667, 1247, 1279,",
+						"        111, 730, 251, 894, 1329,",
+						"        751, 806, 1223, 603, 187,",
+						"        446, 807, 1148, 869, 659,",
+						"        734, 444, 451, 548, 173,",
+						"        462, 646, 1668, 1680, 1241,",
+						"        1759, 666, 109, 1578, 1418,",
+						"        1793, 713, 733, 1166, 1639,",
+						"        1113, 942, 421, 329, 1157,",
+						"        1665, 1398",
+						"    ],",
+						"    admission_id",
+						")) ~> filter1",
 						"filter1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
