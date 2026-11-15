@@ -40,7 +40,7 @@
 						"referenceName": "silver_billing_sql",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "billing"
 				},
 				{
 					"dataset": {
@@ -73,7 +73,10 @@
 					"name": "lookup5"
 				},
 				{
-					"name": "lookup6"
+					"name": "join1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -88,7 +91,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> admissions",
+				"     query: 'SELECT *\\nFROM silver.admissions',",
+				"     format: 'query') ~> admissions",
 				"source(output(",
 				"          paciente_key as integer,",
 				"          patient_id_bk as integer,",
@@ -132,7 +136,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source1",
+				"     query: 'SELECT *\\nFROM silver.billing',",
+				"     format: 'query') ~> billing",
 				"source(output(",
 				"          fecha_key as integer,",
 				"          fecha_completa as date,",
@@ -152,7 +157,7 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> fecha",
-				"lookup6, paciente lookup(patient_id == patient_id_bk,",
+				"select1, paciente lookup(patient_id == patient_id_bk,",
 				"     multiple: false,",
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lookup2",
@@ -169,10 +174,23 @@
 				"     multiple: false,",
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lookup5",
-				"source1, admissions lookup(source1@admission_id == admissions@admission_id,",
-				"     multiple: false,",
-				"     pickup: 'any',",
-				"     broadcast: 'auto')~> lookup6",
+				"billing, admissions join(billing@admission_id == admissions@admission_id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 select(mapColumn(",
+				"          billing_id,",
+				"          admission_id = billing@admission_id,",
+				"          charge_type,",
+				"          amount,",
+				"          payment_status,",
+				"          payment_date,",
+				"          patient_id,",
+				"          department",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
 				"lookup5 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -196,7 +214,7 @@
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          billing_id_bk = billing_id,",
-				"          admission_id_bk = source1@admission_id,",
+				"          admission_id_bk = admission_id,",
 				"          paciente_key,",
 				"          departamento_key,",
 				"          servicio_cargo_key,",
